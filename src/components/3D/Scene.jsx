@@ -2,9 +2,7 @@ import { useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import {
   Float,
-  Html,
   PositionalAudio,
-  RoundedBox,
   Text3D,
   useScroll,
 } from "@react-three/drei";
@@ -12,12 +10,10 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { FirstIsland } from "../islands/FirstIsland";
 import { SecondIsland } from "../islands/SecondIsland";
-import { audioPlayAtom } from "../../App";
 import { useAtom } from "jotai";
 import { useState } from "react";
 import { UIAtom } from "../global/ui.jotai";
 import { ThirdIsland } from "../islands/ThirdIsland";
-import Tooltip from "../global/Billboard";
 
 const Scene = () => {
   const { camera } = useThree();
