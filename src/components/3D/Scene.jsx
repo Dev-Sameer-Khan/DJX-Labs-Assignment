@@ -1,6 +1,13 @@
 import { useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Float, PositionalAudio, useScroll } from "@react-three/drei";
+import {
+  Float,
+  Html,
+  PositionalAudio,
+  RoundedBox,
+  Text3D,
+  useScroll,
+} from "@react-three/drei";
 import { useEffect } from "react";
 import gsap from "gsap";
 import { FirstIsland } from "../islands/FirstIsland";
@@ -10,6 +17,7 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 import { UIAtom } from "../global/ui.jotai";
 import { ThirdIsland } from "../islands/ThirdIsland";
+import Tooltip from "../global/Billboard";
 
 const Scene = () => {
   const { camera } = useThree();
@@ -117,11 +125,9 @@ const Scene = () => {
     }
   };
 
-  
-const isMobile = window.innerWidth <= 599;
+  const isMobile = window.innerWidth <= 599;
 
-
-const move = useRef(null)
+  const move = useRef(null);
 
   useEffect(() => {
     const handlePointerMove = (e) => {
@@ -129,7 +135,7 @@ const move = useRef(null)
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 + 1;
       move.current._targetPos = {
-        x: x ,
+        x: x,
         y: -y,
       };
     };
@@ -141,11 +147,12 @@ const move = useRef(null)
   useFrame(() => {
     if (move.current) {
       if (!move.current._targetPos) move.current._targetPos = { x: 0, y: 0 };
-      move.current.position.x += (move.current._targetPos.x - move.current.position.x) * 0.05;
-      move.current.position.y += (move.current._targetPos.y - move.current.position.y) * 0.05 ;
+      move.current.position.x +=
+        (move.current._targetPos.x - move.current.position.x) * 0.05;
+      move.current.position.y +=
+        (move.current._targetPos.y - move.current.position.y) * 0.05;
     }
   });
-
 
   return (
     <>
@@ -160,21 +167,171 @@ const move = useRef(null)
         {/* Island 1 */}
         <group onClick={() => select("services")}>
           <Float floatIntensity={0.5} speed={1} rotationIntensity={0.05}>
-            <FirstIsland scale={isMobile ? .8 : 2} position={[20, 0, -40]} />
+          <group position-y={6} position-z={-40} position-x={20}>
+            <group>
+              <mesh>
+                <boxGeometry args={[4, 1.2, 0.16]} />
+                <meshBasicMaterial color="#183a26" />
+              </mesh>
+              <mesh position={[0, 0, 0.085]}>
+                <planeGeometry args={[3.7, 0.92]} />
+                <meshBasicMaterial color="#223218" />
+              </mesh>
+              <mesh position={[0, 0.6, 0.088]}>
+                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <meshBasicMaterial color="#00ffd0" />
+              </mesh>
+              <mesh position={[0, -0.6, 0.088]}>
+                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <meshBasicMaterial color="#00ffd0" />
+              </mesh>
+              <mesh position={[-1.85, 0, 0.088]}>
+                <boxGeometry args={[0.09, 1.08, 0.01]} />
+                <meshBasicMaterial color="#00ffd0" />
+              </mesh>
+              <mesh position={[1.85, 0, 0.088]}>
+                <boxGeometry args={[0.09, 1.08, 0.01]} />
+                <meshBasicMaterial color="#00ffd0" />
+              </mesh>
+         
+              <mesh position={[0, -0.8, -0.05]}>
+                <cylinderGeometry args={[0.07, 0.09, 1.1, 12]} />
+                <meshBasicMaterial color="#888" />
+              </mesh>
+              <Text3D
+                font={"/Inter.json"}
+                position={[-1.5, -0.2, 0.13]}
+                scale={0.45}
+                bevelEnabled
+                bevelThickness={0.06}
+                bevelSize={0.025}
+                bevelSegments={4}
+                curveSegments={16}
+                height={0.08}
+              >
+                CLICK ME
+                <meshBasicMaterial color="#ffee00" />
+              </Text3D>
+            </group>
+          </group>
+          </Float>
+          <Float floatIntensity={0.5} speed={1} rotationIntensity={0.05}>
+            <FirstIsland scale={isMobile ? 0.8 : 2} position={[20, 0, -40]} />
           </Float>
         </group>
 
         {/* Island 2 */}
         <group onClick={() => select("about")}>
+        <Float>
+          <group position-y={6}>
+            <group>
+              <mesh>
+                <boxGeometry args={[4, 1.2, 0.16]} />
+                <meshBasicMaterial color="#1a0a00" />
+              </mesh>
+              <mesh position={[0, 0, 0.085]}>
+                <planeGeometry args={[3.7, 0.92]} />
+                <meshBasicMaterial color="#0d0400" />
+              </mesh>
+              <mesh position={[0, 0.6, 0.088]}>
+                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <meshBasicMaterial color="#ff0088" />
+              </mesh>
+              <mesh position={[0, -0.6, 0.088]}>
+                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <meshBasicMaterial color="#ff0088" />
+              </mesh>
+              <mesh position={[-1.85, 0, 0.088]}>
+                <boxGeometry args={[0.09, 1.08, 0.01]} />
+                <meshBasicMaterial color="#ff0088" />
+              </mesh>
+              <mesh position={[1.85, 0, 0.088]}>
+                <boxGeometry args={[0.09, 1.08, 0.01]} />
+                <meshBasicMaterial color="#ff0088" />
+              </mesh>
+              <mesh position={[0, -0.8, -0.05]}>
+                <cylinderGeometry args={[0.07, 0.09, 1.1, 12]} />
+                <meshBasicMaterial color="#888" />
+              </mesh>
+              <Text3D
+                font={"/Inter.json"}
+                position={[-1.5, -0.2, 0.13]}
+                scale={0.45}
+                bevelEnabled
+                bevelThickness={0.06}
+                bevelSize={0.025}
+                bevelSegments={4}
+                curveSegments={16}
+                height={0.08}
+              >
+                CLICK ME
+                <meshBasicMaterial color="#ffee00" />
+              </Text3D>
+            </group>
+          </group>
+          </Float>
           <Float floatIntensity={0.5} speed={1} rotationIntensity={0.05}>
-            <SecondIsland scale={isMobile ? .017 : 0.05} />
+            <SecondIsland scale={isMobile ? 0.017 : 0.05} />
           </Float>
         </group>
 
         {/* Island 3 */}
         <group onClick={() => select("works")}>
+        <Float floatIntensity={0.5} speed={1} rotationIntensity={0.05}>
+          <group position-y={6} position-z={-80} position-x={-10}>
+            <group>
+              <mesh>
+                <boxGeometry args={[4, 1.2, 0.16]} />
+                <meshBasicMaterial color="#36179a" />
+              </mesh>
+              <mesh position={[0, 0, 0.085]}>
+                <planeGeometry args={[3.7, 0.92]} />
+                <meshBasicMaterial color="#140d55" />
+              </mesh>
+              <mesh position={[0, 0.6, 0.088]}>
+                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <meshBasicMaterial color="#00eaff" />
+              </mesh>
+              <mesh position={[0, -0.6, 0.088]}>
+                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <meshBasicMaterial color="#00eaff" />
+              </mesh>
+              <mesh position={[-1.85, 0, 0.088]}>
+                <boxGeometry args={[0.09, 1.08, 0.01]} />
+                <meshBasicMaterial color="#00eaff" />
+              </mesh>
+              <mesh position={[1.85, 0, 0.088]}>
+                <boxGeometry args={[0.09, 1.08, 0.01]} />
+                <meshBasicMaterial color="#00eaff" />
+              </mesh>
+         
+              <mesh position={[0, -0.8, -0.05]}>
+                <cylinderGeometry args={[0.07, 0.09, 1.1, 12]} />
+                <meshBasicMaterial color="#888" />
+              </mesh>
+              <Text3D
+                font={"/Inter.json"}
+                position={[-1.5, -0.2, 0.13]}
+                scale={0.45}
+                bevelEnabled
+                bevelThickness={0.06}
+                bevelSize={0.025}
+                bevelSegments={4}
+                curveSegments={16}
+                height={0.08}
+              >
+                CLICK ME
+                <meshBasicMaterial color="#ffee00" />
+              </Text3D>
+            </group>
+          </group>
+          </Float>
           <Float floatIntensity={0.5} speed={1} rotationIntensity={0.05}>
-            <ThirdIsland scale={isMobile ? 1.5 :3} position-y={-2} position={[-20, 0, -80]} />
+            <ThirdIsland
+              scale={isMobile ? 1.5 : 3}
+              position-y={-2}
+              position={[-20, 0, -80]}
+            />
           </Float>
         </group>
       </group>
@@ -187,7 +344,55 @@ const move = useRef(null)
 
         {/* Island 2 */}
         <group onClick={() => select("about")}>
-          <SecondIsland scale={isMobile ? .015 : .05} />
+        <Float>
+          <group position-y={6}>
+            <group>
+              <mesh>
+                <boxGeometry args={[4, 1.2, 0.16]} />
+                <meshBasicMaterial color="#1a0a00" />
+              </mesh>
+              <mesh position={[0, 0, 0.085]}>
+                <planeGeometry args={[3.7, 0.92]} />
+                <meshBasicMaterial color="#0d0400" />
+              </mesh>
+              <mesh position={[0, 0.6, 0.088]}>
+                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <meshBasicMaterial color="#ff0088" />
+              </mesh>
+              <mesh position={[0, -0.6, 0.088]}>
+                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <meshBasicMaterial color="#ff0088" />
+              </mesh>
+              <mesh position={[-1.85, 0, 0.088]}>
+                <boxGeometry args={[0.09, 1.08, 0.01]} />
+                <meshBasicMaterial color="#ff0088" />
+              </mesh>
+              <mesh position={[1.85, 0, 0.088]}>
+                <boxGeometry args={[0.09, 1.08, 0.01]} />
+                <meshBasicMaterial color="#ff0088" />
+              </mesh>
+              <mesh position={[0, -0.8, -0.05]}>
+                <cylinderGeometry args={[0.07, 0.09, 1.1, 12]} />
+                <meshBasicMaterial color="#888" />
+              </mesh>
+              <Text3D
+                font={"/Inter.json"}
+                position={[-1.5, -0.2, 0.13]}
+                scale={0.45}
+                bevelEnabled
+                bevelThickness={0.06}
+                bevelSize={0.025}
+                bevelSegments={4}
+                curveSegments={16}
+                height={0.08}
+              >
+                CLICK ME
+                <meshBasicMaterial color="#ffee00" />
+              </Text3D>
+            </group>
+          </group>
+          </Float>
+          <SecondIsland scale={isMobile ? 0.015 : 0.05} />
         </group>
 
         {/* Island 3 */}
