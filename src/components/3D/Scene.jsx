@@ -149,6 +149,7 @@ const Scene = () => {
         (move.current._targetPos.y - move.current.position.y) * 0.05;
     }
   });
+  
 
   return (
     <>
@@ -163,29 +164,29 @@ const Scene = () => {
         {/* Island 1 */}
         <group onClick={() => select("services")}>
           <Float floatIntensity={0.5} speed={1} rotationIntensity={0.05}>
-          <group position-y={6} position-z={-40} position-x={20}>
+          <group position-y={isMobile ? 4 :6} position-z={-40} position-x={20}>
             <group>
               <mesh>
-                <boxGeometry args={[4, 1.2, 0.16]} />
+                <boxGeometry args={[isMobile ?2  :4, 1.2, 0.16]} />
                 <meshBasicMaterial color="#183a26" />
               </mesh>
               <mesh position={[0, 0, 0.085]}>
-                <planeGeometry args={[3.7, 0.92]} />
+                <planeGeometry args={[isMobile ? 2.3 :3.7, 0.92]} />
                 <meshBasicMaterial color="#223218" />
               </mesh>
               <mesh position={[0, 0.6, 0.088]}>
-                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <boxGeometry args={[isMobile ? 2.3 :3.7, 0.09, 0.01]} />
                 <meshBasicMaterial color="#00ffd0" />
               </mesh>
               <mesh position={[0, -0.6, 0.088]}>
-                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <boxGeometry args={[isMobile ? 2.3 :3.7, 0.09, 0.01]} />
                 <meshBasicMaterial color="#00ffd0" />
               </mesh>
-              <mesh position={[-1.85, 0, 0.088]}>
+              <mesh position={[isMobile ? -1.1 :-1.85, 0, 0.088]}>
                 <boxGeometry args={[0.09, 1.08, 0.01]} />
                 <meshBasicMaterial color="#00ffd0" />
               </mesh>
-              <mesh position={[1.85, 0, 0.088]}>
+              <mesh position={[isMobile ? 1.1 :1.85, 0, 0.088]}>
                 <boxGeometry args={[0.09, 1.08, 0.01]} />
                 <meshBasicMaterial color="#00ffd0" />
               </mesh>
@@ -196,8 +197,8 @@ const Scene = () => {
               </mesh>
               <Text3D
                 font={"/Inter.json"}
-                position={[-1.5, -0.2, 0.13]}
-                scale={0.45}
+                position={[isMobile ? -0.7 :-1.5, isMobile ? -0.1 :-0.2, 0.13]}
+                scale={isMobile ?  0.2:0.45}
                 bevelEnabled
                 bevelThickness={0.06}
                 bevelSize={0.025}
@@ -219,29 +220,29 @@ const Scene = () => {
         {/* Island 2 */}
         <group onClick={() => select("about")}>
         <Float>
-          <group position-y={6}>
+          <group position-y={isMobile ? 4 :6}>
             <group>
               <mesh>
-                <boxGeometry args={[4, 1.2, 0.16]} />
+                <boxGeometry args={[isMobile ? 2.3 :4, 1.2 , 0.16]} />
                 <meshBasicMaterial color="#1a0a00" />
               </mesh>
               <mesh position={[0, 0, 0.085]}>
-                <planeGeometry args={[3.7, 0.92]} />
+                <planeGeometry args={[isMobile ? 2.3 :3.7, 0.92]} />
                 <meshBasicMaterial color="#0d0400" />
               </mesh>
-              <mesh position={[0, 0.6, 0.088]}>
-                <boxGeometry args={[3.7, 0.09, 0.01]} />
+              <mesh position={[0, 0.4, 0.088]}>
+                <boxGeometry args={[isMobile ? 2.3 :3.7, 0.09, 0.01]} />
                 <meshBasicMaterial color="#ff0088" />
               </mesh>
               <mesh position={[0, -0.6, 0.088]}>
-                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <boxGeometry args={[isMobile ? 2.3 :3.7, 0.09, 0.01]} />
                 <meshBasicMaterial color="#ff0088" />
               </mesh>
-              <mesh position={[-1.85, 0, 0.088]}>
-                <boxGeometry args={[0.09, 1.08, 0.01]} />
+              <mesh position={[isMobile ? -1.1:-1.85, isMobile ? -0.1 :0, 0.088]}>
+                <boxGeometry args={[0.09, isMobile ? 1: 1.08, 0.01]} />
                 <meshBasicMaterial color="#ff0088" />
               </mesh>
-              <mesh position={[1.85, 0, 0.088]}>
+              <mesh position={[isMobile ? 1.1 :1.85, isMobile? -0.1 :0, 0.088]}>
                 <boxGeometry args={[0.09, 1.08, 0.01]} />
                 <meshBasicMaterial color="#ff0088" />
               </mesh>
@@ -251,8 +252,8 @@ const Scene = () => {
               </mesh>
               <Text3D
                 font={"/Inter.json"}
-                position={[-1.5, -0.2, 0.13]}
-                scale={0.45}
+                position={[isMobile ? -0.7 :-1.5, -0.2, 0.13]}
+                scale={isMobile ? 0.2 :0.45}
                 bevelEnabled
                 bevelThickness={0.06}
                 bevelSize={0.025}
@@ -274,29 +275,29 @@ const Scene = () => {
         {/* Island 3 */}
         <group onClick={() => select("works")}>
         <Float floatIntensity={0.5} speed={1} rotationIntensity={0.05}>
-          <group position-y={6} position-z={-80} position-x={-10}>
+          <group position-y={isMobile  ?-5  :6} position-z={-80} position-x={isMobile ? -20 :-10}>
             <group>
               <mesh>
-                <boxGeometry args={[4, 1.2, 0.16]} />
+                <boxGeometry args={[isMobile ? 2 :4, 1.2, 0.16]} />
                 <meshBasicMaterial color="#36179a" />
               </mesh>
               <mesh position={[0, 0, 0.085]}>
-                <planeGeometry args={[3.7, 0.92]} />
+                <planeGeometry args={[isMobile ? 2.3 :3.7, 0.92]} />
                 <meshBasicMaterial color="#140d55" />
               </mesh>
               <mesh position={[0, 0.6, 0.088]}>
-                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <boxGeometry args={[isMobile ? 2.3 :3.7, 0.09, 0.01]} />
                 <meshBasicMaterial color="#00eaff" />
               </mesh>
               <mesh position={[0, -0.6, 0.088]}>
-                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <boxGeometry args={[isMobile ? 2.3 :3.7, 0.09, 0.01]} />
                 <meshBasicMaterial color="#00eaff" />
               </mesh>
-              <mesh position={[-1.85, 0, 0.088]}>
+              <mesh position={[isMobile ? -1.1 :-1.85, 0, 0.088]}>
                 <boxGeometry args={[0.09, 1.08, 0.01]} />
                 <meshBasicMaterial color="#00eaff" />
               </mesh>
-              <mesh position={[1.85, 0, 0.088]}>
+              <mesh position={[isMobile ? 1.1 :1.85, 0, 0.088]}>
                 <boxGeometry args={[0.09, 1.08, 0.01]} />
                 <meshBasicMaterial color="#00eaff" />
               </mesh>
@@ -307,8 +308,8 @@ const Scene = () => {
               </mesh>
               <Text3D
                 font={"/Inter.json"}
-                position={[-1.5, -0.2, 0.13]}
-                scale={0.45}
+                position={[isMobile ? -0.7 :-1.5, isMobile ? -0.1 :-0.2, 0.13]}
+                scale={isMobile ? 0.2 :0.45}
                 bevelEnabled
                 bevelThickness={0.06}
                 bevelSize={0.025}
@@ -341,29 +342,29 @@ const Scene = () => {
         {/* Island 2 */}
         <group onClick={() => select("about")}>
         <Float>
-          <group position-y={6}>
+        <group position-y={isMobile ? 4 :6}>
             <group>
               <mesh>
-                <boxGeometry args={[4, 1.2, 0.16]} />
+                <boxGeometry args={[isMobile ? 2.3 :4, 1.2 , 0.16]} />
                 <meshBasicMaterial color="#1a0a00" />
               </mesh>
               <mesh position={[0, 0, 0.085]}>
-                <planeGeometry args={[3.7, 0.92]} />
+                <planeGeometry args={[isMobile ? 2.3 :3.7, 0.92]} />
                 <meshBasicMaterial color="#0d0400" />
               </mesh>
-              <mesh position={[0, 0.6, 0.088]}>
-                <boxGeometry args={[3.7, 0.09, 0.01]} />
+              <mesh position={[0, 0.4, 0.088]}>
+                <boxGeometry args={[isMobile ? 2.3 :3.7, 0.09, 0.01]} />
                 <meshBasicMaterial color="#ff0088" />
               </mesh>
               <mesh position={[0, -0.6, 0.088]}>
-                <boxGeometry args={[3.7, 0.09, 0.01]} />
+                <boxGeometry args={[isMobile ? 2.3 :3.7, 0.09, 0.01]} />
                 <meshBasicMaterial color="#ff0088" />
               </mesh>
-              <mesh position={[-1.85, 0, 0.088]}>
-                <boxGeometry args={[0.09, 1.08, 0.01]} />
+              <mesh position={[isMobile ? -1.1:-1.85, isMobile ? -0.1 :0, 0.088]}>
+                <boxGeometry args={[0.09, isMobile ? 1: 1.08, 0.01]} />
                 <meshBasicMaterial color="#ff0088" />
               </mesh>
-              <mesh position={[1.85, 0, 0.088]}>
+              <mesh position={[isMobile ? 1.1 :1.85, isMobile? -0.1 :0, 0.088]}>
                 <boxGeometry args={[0.09, 1.08, 0.01]} />
                 <meshBasicMaterial color="#ff0088" />
               </mesh>
@@ -373,8 +374,8 @@ const Scene = () => {
               </mesh>
               <Text3D
                 font={"/Inter.json"}
-                position={[-1.5, -0.2, 0.13]}
-                scale={0.45}
+                position={[isMobile ? -0.7 :-1.5, -0.2, 0.13]}
+                scale={isMobile ? 0.2 :0.45}
                 bevelEnabled
                 bevelThickness={0.06}
                 bevelSize={0.025}

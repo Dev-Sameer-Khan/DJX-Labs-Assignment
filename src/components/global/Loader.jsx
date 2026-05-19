@@ -292,6 +292,9 @@ export default function SpaceLoader({ onEnter }) {
           <br />
           <b>Click</b> on <span style={{ color: BLUE_LIGHT }}>islands</span> to
           preview immersive content.
+          <br />
+          <b>ReClick</b> on <span style={{ color: BLUE_LIGHT }}>islands</span> to
+          close immersive content.
         </div>
       </div>
 
